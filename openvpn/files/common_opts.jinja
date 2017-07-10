@@ -109,6 +109,10 @@ mute {{ config.mute }}
 ; Cryptographic parameters
 {%- if config.ca is defined %}
 ca {{ config.ca }}
+{%- elif config.ca_content is defined %}
+<ca>
+{{ config.ca_content | replace('\\n', '\n')}}
+</ca>
 {%- else %}
 # ca is not set !
 {%- endif %}
