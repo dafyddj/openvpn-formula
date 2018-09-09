@@ -8,10 +8,11 @@ include:
 {%       if config.dev_node is defined %}
 openvpn_tap_adapter_{{ config.dev_node }}:
   cmd.script:
+    - name: dummy -New {{ config.dev_node }}
     - source: salt://openvpn/files/tap-adapter.ps1
-    - args: -New {{ config.dev_node }}
     - shell: powershell
-    - stateful: True
+    - stateful:
+      - test_name: dummy -WhatIf -New {{ config.dev_node }}
     - require:
       - pkg: openvpn_pkgs
 {%       endif %}
