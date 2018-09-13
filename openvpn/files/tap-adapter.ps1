@@ -10,6 +10,11 @@ $tapInstallCmd = "$tapDir\bin\tapinstall.exe"
 $tapInstallArgs = "install", "`"$tapDir\driver\OemVista.inf`"", "tap0901"     # Backtick quotes https://stackoverflow.com/q/17550663
 $testVerb = "would be "
 
+if (-not (Test-Path $tapInstallCmd)) {
+    Write-Host "changed=no comment=`'$tapInstallCmd is not available`'"
+    exit 1
+}
+
 if ($PSCmdlet.ParameterSetName -eq 'new') {
     if (Get-NetAdapter -InterfaceDescription $tapDesc | Where-Object Name -eq $New) {
         Write-Host "changed=no comment=`'TAP-Windows adapter $New exists`'"
