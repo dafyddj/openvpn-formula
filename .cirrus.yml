@@ -1,0 +1,10 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+windows_container:
+  image: cirrusci/windowsservercore:2019
+  os_version: 2019
+
+windows_task:
+  script:
+    - ps: docker version
