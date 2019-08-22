@@ -1,0 +1,10 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+name: openvpn-windows
+title: OpenVPN Formula
+maintainer: SaltStack Formulas
+license: Apache-2.0
+summary: Verify that the openvpn formula is setup and configured correctly
+supports:
+  - platform: windows
