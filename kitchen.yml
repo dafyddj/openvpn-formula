@@ -173,6 +173,19 @@ platforms:
     driver:
       image: netmanagers/salt-2017.7-py2:arch-base-latest
       run_command: /usr/lib/systemd/systemd
+<% if not ENV['CI'] == 'true' %>
+  - name: windows-81-2019-2-py3
+    driver:
+      name: vagrant
+      box: techneg/win81x64-pro-salt
+      linked_clone: true
+    provisioner:
+      init_environment: >
+        salt-call --local state.single file.managed
+        C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng\openvpn.sls
+        source=https://github.com/saltstack/salt-winrepo-ng/raw/master/openvpn.sls
+        skip_verify=True makedirs=True
+<% end %>
 
 provisioner:
   name: salt_solo
