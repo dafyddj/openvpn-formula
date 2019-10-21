@@ -47,6 +47,7 @@ jobs:
         # Need at least `v1.17.0` for the `yaml-files` setting
         - pip install --user yamllint>=1.17.0
         - yamllint -s .
+        - cat -n .rendered/openvpn/install.yaml
         # Install and run `rubocop`
         - gem install rubocop
         - rubocop -d
