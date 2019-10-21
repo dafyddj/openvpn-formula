@@ -10,7 +10,7 @@ openvpn_pkgs:
 {%- endif %}
     - pkgs:
       {%- for pkg in map.pkgs %}
-      - {{ pkg }}
+        - {{ pkg }}
       {%- endfor %}
 
 {%- if salt['grains.get']('os_family') == 'Windows' %}
