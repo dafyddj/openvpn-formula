@@ -33,8 +33,16 @@ jobs:
       script:
         # Install and run `salt-lint`
         - pip install --user salt-lint
-        - git ls-files | grep '\.sls$\|\.jinja$\|\.j2$\|\.tmpl$'
-                       | xargs -I {} salt-lint {}
+        - git ls-files '*.sls' '*.jinja' '*.j2*' '*.tmpl' | xargs salt-lint
+        # Render .sls files before running `yamllint` on them
+        # Create parallel directory tree of empty dirs as get_template doesn't create directories
+        - git ls-files '*.sls' |
+          xargs -I {} bash -c 'mkdir -p $(pwd)/.rendered/${1%/*}' -- {}
+        # yamllint disable rule:line-length
+        - git ls-files '*.sls' |
+          xargs -I {} sh -c 'salt-call -c $(pwd)/.salt --file-root=$(pwd) cp.get_template $(pwd)/$1 $(pwd)/.rendered/${1%.*}.yaml' -- {}
+        # yamllint enable rule:line-length
+        - ls -R .rendered
         # Install and run `yamllint`
         # Need at least `v1.17.0` for the `yaml-files` setting
         - pip install --user yamllint>=1.17.0

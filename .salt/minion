@@ -1,0 +1,2 @@
+root_dir: /home/travis/.salt
+file_client: local
