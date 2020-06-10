@@ -12,9 +12,10 @@ platforms:
 
 provisioner:
   salt_install: bootstrap
-  salt_bootstrap_options: -pythonVersion 3
+  salt_bootstrap_options: -repourl https://repo.saltstack.com/salt_rc/windows -pythonVersion 3 -version 3001rc1
   init_environment: >
     C:\salt\salt-call --local state.single file.managed
     C:\Users\kitchen\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng\openvpn.sls
     source=https://github.com/saltstack/salt-winrepo-ng/raw/master/openvpn.sls
-    skip_verify=True makedirs=True
+    skip_verify=True makedirs=True;
+    C:\salt\salt-call --versions
