@@ -15,10 +15,11 @@ script:
   - powershell -NonInteractive -Command "& { \$password = ConvertTo-SecureString $machine_pass -AsPlainText -Force; New-LocalUser $machine_user -Password \$password }"
   - powershell -NonInteractive -Command Add-LocalGroupMember -Group Administrators -Member $machine_user
   - net localgroup Administrators
-  - gem install bundler --quiet --no-document
-  - choco list -l
-  - choco install msys2
-  - ridk.cmd exec pacman -S --noconfirm --needed base-devel mingw-w64-x86_64-toolchain
+  - wget -h
+  - wget -nv https://packages.chef.io/files/stable/chef-workstation/20.9.158/windows/2019/chef-workstation-20.9.158-1-x64.msi
+  - ls
+  - msiexec /q /i chef-workstation-20.9.158-1-x64.msi ADDLOCAL=ALL REMOVE=ChefWSApp
+#  - gem install bundler --quiet --no-document
   - bundle config path vendor/bundle
   - bundle install --jobs 4 --retry 3
   - bundle exec kitchen verify
