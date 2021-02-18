@@ -15,12 +15,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/cache@v1
+      - uses: ruby/setup-ruby@v1
         with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
+          ruby-version: 2.7.2
+          bundler: latest
+          bundler-cache: true
+      - run: |
+          ruby --version
+          gem info bundler
+          bundle version
       - shell: powershell
         run: |
           $password = ConvertTo-SecureString $env:machine_pass -AsPlainText -Force
@@ -31,9 +34,5 @@ jobs:
           Set-WSManQuickConfig -Force;
           Set-WSManInstance -ResourceURI winrm/config/service
           -ValueSet @{AllowUnencrypted="true"}
-      - run: gem install bundler --quiet --no-document
-      - name: Bundle install
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-      - run: bundle exec kitchen test
+      - run: |
+          bundle exec kitchen verify
