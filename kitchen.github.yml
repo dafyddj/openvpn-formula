@@ -1,11 +1,7 @@
 ---
 driver:
-  name: proxy
-  host: localhost
+  name: exec
   reset_command: "exit 0"
-  port: 5985
-  username: kitchen
-  password: Pass@word1
 
 platforms:
   - name: windows
@@ -15,7 +11,7 @@ provisioner:
   salt_bootstrap_options: -pythonVersion 3
   init_environment: |
     C:\salt\salt-call --local state.single file.managed `
-      C:\Users\kitchen\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng\openvpn.sls `
+      C:\Users\runneradmin\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng\openvpn.sls `
       source=https://github.com/saltstack/salt-winrepo-ng/raw/master/openvpn.sls `
       skip_verify=True makedirs=True
     exit 0

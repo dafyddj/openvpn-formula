@@ -13,6 +13,7 @@ gem 'kitchen-docker', git: 'https://gitlab.com/saltstack-formulas/infrastructure
 gem 'kitchen-inspec', '>= 2.2.1'
 gem 'kitchen-salt', '>= 0.6.3'
 gem 'rspec-retry'
+gem 'test-kitchen', '>= 2.8.0'
 
 group :vagrant do
   gem 'kitchen-vagrant'

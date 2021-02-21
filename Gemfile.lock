@@ -180,7 +180,7 @@ GEM
       ms_rest_azure (~> 0.12.0)
     azure_mgmt_storage (0.22.0)
       ms_rest_azure (~> 0.12.0)
-    bcrypt_pbkdf (1.0.1)
+    bcrypt_pbkdf (1.1.0)
     builder (3.2.4)
     chef-config (16.6.14)
       addressable
@@ -310,7 +310,7 @@ GEM
     minitest (5.14.2)
     mixlib-config (3.0.9)
       tomlrb
-    mixlib-install (3.12.3)
+    mixlib-install (3.12.7)
       mixlib-shellout
       mixlib-versioning
       thor
@@ -382,7 +382,7 @@ GEM
       unicode-display_width (~> 1.5)
       unicode_utils (~> 1.4)
     strings-ansi (0.2.0)
-    test-kitchen (2.7.2)
+    test-kitchen (2.10.0)
       bcrypt_pbkdf (~> 1.0)
       ed25519 (~> 1.2)
       license-acceptance (>= 1.0.11, < 3.0)
@@ -531,6 +531,7 @@ DEPENDENCIES
   kitchen-salt (>= 0.6.3)
   kitchen-vagrant
   rspec-retry
+  test-kitchen (>= 2.8.0)
 
 BUNDLED WITH
    2.1.2
